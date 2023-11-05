@@ -1,0 +1,10 @@
+{
+  "add": {
+    "name": "add",
+    "result": 1
+  },
+  "subtract": {
+    "name": "subtract",
+    "result": 2
+  }
+}

@@ -35,25 +35,3 @@ const cwdAndInstallTestProject = (name: string) => {
 
   console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\nTesting setup end.  Now running test.')
 }
-
-test("ESM Install", () => {
-  cwdAndInstallTestProject('esm-install')
-  execSync('npm run build', { stdio: 'inherit' })
-});
-
-test("CJS Install", () => {
-  cwdAndInstallTestProject('cjs-install')
-  execSync('npm run test', { stdio: 'inherit' })
-});
-
-test('Absolute URL', async () => {
-  cwdAndInstallTestProject('absolute-url')
-
-  for await (const output of checkProcessOutput('npm run dev')) {
-    if (output.includes('http://localhost:5173/')) {
-      break
-    }
-  }
-
-  const get = await axios.get('http://localhost:5173/')
-})

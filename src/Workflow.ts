@@ -21,6 +21,25 @@ export class Workflow {
   }
 }
 
+/*
+* runtime requirements
+
+[ ] load from json
+[ ] save to json
+[ ] to async function
+	[ ] run
+[ ] load from db
+[ ] find first unit of work
+[ ] execute 1 node
+
+[ ] load plugin
+[ ] TS-support for plugins
+[ ] TS-support for workflow
+[ ] also non-TS support
+
+*
+* */
+
 type T = typeof  pluginJson
 
 const X: T = null as unknown as T

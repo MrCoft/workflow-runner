@@ -1,5 +1,5 @@
 import {WorkflowRuntime} from "../src/WorkflowRuntime";
-import {testData_emptyPlugin} from "./test.data";
+import {testData_emptyPlugin, testData_mathPlugin} from "./test.data";
 
 test('empty constructor', () => {
   const workflowRuntime = new WorkflowRuntime()
@@ -15,6 +15,16 @@ test('load plugin', () => {
   })
 })
 
-test('exec native node type', () => {
-  const workflowRuntime = new WorkflowRuntime({})
+test('exec native node type', async () => {
+  const workflowRuntime = new WorkflowRuntime({
+    plugins: [testData_mathPlugin]
+  })
+  const result = await workflowRuntime.execute(
+    'math.add',
+    {
+      a: 1,
+      b: 2,
+    }
+  )
+  expect(result).toEqual(3)
 })

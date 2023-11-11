@@ -16,17 +16,6 @@ export interface WorkflowPlugin {
       nodeTypeFullyQualifiedName: string
     }[]
   }[]
-  valueTypes: {
-    displayName: string
-    fullyQualifiedName: string
-    format: 'json' | unknown
-    fields: {
-      name: string
-      defaultConstantValueId: string
-      webComponent: string
-      attributes: Record<string, string>
-    }[]
-  }
   functions: {
     id: string
     implementation: {
@@ -37,13 +26,24 @@ export interface WorkflowPlugin {
     } | {
       type: 'cli',
     },
-  }
-  constantValues: {
+  }[]
+  valueTypes?: {
+    displayName: string
+    fullyQualifiedName: string
+    format: 'json' | unknown
+    fields: {
+      name: string
+      defaultConstantValueId: string
+      webComponent: string
+      attributes: Record<string, string>
+    }[]
+  }[]
+  constantValues?: {
     id: string
     valueTypeUniqueName: string
     base64encodedContent: string
   }[]
-  migrations: {
+  migrations?: {
     versionFrom: string
     versionTo: string
     nodeTypeFullyQualifiedNamesDiscard: string[]
@@ -78,7 +78,7 @@ export interface WorkflowPlugin {
       functionId: string
     }[],
   }[]
-  dependencies: {
+  dependencies?: {
     name: string
     semverRange: string
   }[]

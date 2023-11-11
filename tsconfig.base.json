@@ -13,11 +13,13 @@
     "noFallthroughCasesInSwitch": true,
     "pretty": true,
     "resolveJsonModule": true,
-    "rootDir": "src",
     "skipLibCheck": true,
     "strict": true,
     "traceResolution": false,
-    "types": ["node", "jest"]
+    "types": ["node", "jest"],
+    "paths": {
+      "~/*": ["./src/*"]
+    }
   },
   "compileOnSave": false,
   "exclude": ["node_modules", "dist"],

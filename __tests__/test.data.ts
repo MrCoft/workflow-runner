@@ -17,11 +17,9 @@ export const testData_mathPlugin = {
     'inputs': [{
       'name': 'a',
       'nodeTypeFullyQualifiedName': 'number',
-      'defaultConstantValueId': null
     }, {
       'name': 'b',
       'nodeTypeFullyQualifiedName': 'number',
-      'defaultConstantValueId': null
     }],
     'outputs': [{
       'name': 'result',

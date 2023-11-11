@@ -9,7 +9,7 @@ export interface WorkflowPlugin {
     inputs: {
       name: string
       nodeTypeFullyQualifiedName: string
-      defaultConstantValueId: string | null
+      defaultConstantValueId?: string
     }[],
     outputs: {
       name: string

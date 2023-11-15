@@ -1,5 +1,5 @@
 import {WorkflowPlugin} from "./WorkflowPlugin";
 
-export interface WorkflowRuntimeConfig {
+export interface WorkflowRunnerConfig {
   plugins?: WorkflowPlugin[]
 }

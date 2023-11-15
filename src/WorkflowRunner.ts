@@ -1,13 +1,13 @@
 import {WorkflowPlugin} from "./types/WorkflowPlugin";
-import {WorkflowRuntimeConfig} from "./types/WorkflowRuntimeConfig";
+import {WorkflowRunnerConfig} from "./types/WorkflowRunnerConfig";
 import {nativePlugin} from "./nativePlugin";
 
-export class WorkflowRuntime {
+export class WorkflowRunner {
   private _plugins: WorkflowPlugin[];
   private _nodeTypes: Record<string, WorkflowPlugin['nodeTypes'][number]> = {};
   private _functionsById: Record<string, WorkflowPlugin['functions'][number]> = {};
 
-  constructor(config?: WorkflowRuntimeConfig) {
+  constructor(config?: WorkflowRunnerConfig) {
     this._plugins = [
       nativePlugin,
       ...config?.plugins ?? []

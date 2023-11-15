@@ -20,7 +20,7 @@ export default defineConfig({
         lib: {
             // Could also be a dictionary or array of multiple entry points
             entry: resolve(__dirname, 'src', 'index.ts'),
-            name: '@netglade/vite-plugin-root-redirect',
+            name: '@coft/workflow-runner',
             // the proper extensions will be added
             fileName: (format) => `vite-plugin-root-redirect.${format}.js`,
             formats: [module === 'esm' ? 'es' : 'umd'],

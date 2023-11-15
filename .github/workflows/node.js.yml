@@ -13,53 +13,58 @@ env:
   NODE_VERSION: 20.x
 
 jobs:
-  checkout:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
   install:
-    needs: checkout
     runs-on: ubuntu-latest
     steps:
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-          cache-dependency-path: './package-lock.json'
       - run: npm ci
 
   test:
     needs: install
     runs-on: ubuntu-latest
     steps:
-    - name: Use Node.js ${{ env.NODE_VERSION }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
-    - run: npm test
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      - run: npm test
 
   build:
     needs: install
     runs-on: ubuntu-latest
     steps:
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
       - run: npm run build
+      - uses: actions/cache/save@v3
+        with:
+          path: dist
+          key: ${{ github.sha }}-dist
 
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          registry-url: https://registry.npmjs.org/
+          cache: 'npm'
+      - uses: actions/cache@v3
+        id: cache-dist
+        with:
+          path: dist
+          key: ${{ github.sha }}-dist
+      - run: npm run build
+        if: steps.cache-dist.outputs.cache-hit != 'true'
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

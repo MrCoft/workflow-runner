@@ -57,7 +57,7 @@ jobs:
           key: ${{ github.sha }}-node-modules
       - run: npm run lint
 
-  test:
+  jest:
     needs: install
     runs-on: ubuntu-latest
     steps:
@@ -73,7 +73,7 @@ jobs:
       - run: npm test
 
   build:
-    needs: install
+    needs: [typescript, jest, eslint]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

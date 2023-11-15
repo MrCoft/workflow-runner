@@ -3,9 +3,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    # Pattern matched against refs/tags
+    tags:
+      - '*'           # Push events to every tag not containing /
 
 env:
   NODE_VERSION: 20.x

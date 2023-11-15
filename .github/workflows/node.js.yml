@@ -21,11 +21,11 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
+      - run: npm ci
       - uses: actions/cache/save@v3
         with:
           path: node_modules
           key: ${{ github.sha }}-node-modules
-      - run: npm ci
 
   test:
     needs: install

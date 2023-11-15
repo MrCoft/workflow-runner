@@ -13,6 +13,7 @@
     "build": "node scripts/build.js",
     "simple-build": "cross-env MODULE=esm vite build",
     "lint": "eslint . --ignore-path .gitignore --max-warnings 0",
+    "tsc": "tsc",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "run-publish": "npm i && npm run build && npm publish"
   },

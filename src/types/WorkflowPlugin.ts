@@ -27,7 +27,7 @@ export interface WorkflowPlugin {
       type: 'cli',
     },
   }[]
-  valueTypes?: {
+  valueTypes: {
     displayName: string
     fullyQualifiedName: string
     format: 'json' | unknown
@@ -38,12 +38,12 @@ export interface WorkflowPlugin {
       attributes: Record<string, string>
     }[]
   }[]
-  constantValues?: {
+  constantValues: {
     id: string
     valueTypeUniqueName: string
     base64encodedContent: string
   }[]
-  migrations?: {
+  migrations: {
     versionFrom: string
     versionTo: string
     nodeTypeFullyQualifiedNamesDiscard: string[]
@@ -78,8 +78,31 @@ export interface WorkflowPlugin {
       functionId: string
     }[],
   }[]
-  dependencies?: {
+  dependencies: {
     name: string
     semverRange: string
   }[]
 }
+
+export type WorkflowPluginConstructor = {
+  name: WorkflowPlugin['name']
+  version: WorkflowPlugin['version']
+  nodeTypes: WorkflowPlugin['nodeTypes']
+  functions: WorkflowPlugin['functions']
+  valueTypes?: WorkflowPlugin['valueTypes']
+  constantValues?: WorkflowPlugin['constantValues']
+  migrations?: WorkflowPlugin['migrations']
+  dependencies?: WorkflowPlugin['dependencies']
+}
+
+export const workflowPluginWithDefaults = (plugin: WorkflowPluginConstructor): WorkflowPlugin =>
+  ({
+    name: plugin.name,
+    version: plugin.version,
+    nodeTypes: plugin.nodeTypes,
+    functions: plugin.functions,
+    valueTypes: plugin.valueTypes ?? [],
+    constantValues: plugin.constantValues ?? [],
+    migrations: plugin.migrations ?? [],
+    dependencies: plugin.dependencies ?? [],
+  })

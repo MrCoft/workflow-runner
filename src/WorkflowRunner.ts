@@ -1,4 +1,4 @@
-import {WorkflowPlugin} from "./types/WorkflowPlugin";
+import {WorkflowPlugin, workflowPluginWithDefaults} from "./types/WorkflowPlugin";
 import {WorkflowRunnerConfig} from "./types/WorkflowRunnerConfig";
 import {nativePlugin} from "./nativePlugin";
 
@@ -10,7 +10,7 @@ export class WorkflowRunner {
   constructor(config?: WorkflowRunnerConfig) {
     this._plugins = [
       nativePlugin,
-      ...config?.plugins ?? []
+      ...config?.plugins?.map(plugin => workflowPluginWithDefaults(plugin)) ?? []
     ];
 
     this.build()

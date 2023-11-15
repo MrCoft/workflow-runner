@@ -1,5 +1,5 @@
-import {WorkflowPlugin} from "./WorkflowPlugin";
+import {WorkflowPluginConstructor} from "./WorkflowPlugin";
 
 export interface WorkflowRunnerConfig {
-  plugins?: WorkflowPlugin[]
+  plugins?: WorkflowPluginConstructor[]
 }

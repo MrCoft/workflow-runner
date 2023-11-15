@@ -1,6 +1,7 @@
 import {WorkflowRunner} from "../src/WorkflowRunner";
 import {testData_emptyPlugin, testData_mathPlugin} from "./test.data";
 import {WorkflowJson} from "../src/types/WorkflowJson";
+import {WorkflowJsonConstructor} from "../src/types/WorkflowJsonConstructor";
 
 test('empty constructor', () => {
   const runner = new WorkflowRunner()
@@ -31,30 +32,42 @@ test('exec native node type', async () => {
 })
 
 test('convert directed graph to array', async () => {
-  const runner = new WorkflowRunner()
+  const runner = new WorkflowRunner({
+    plugins: [testData_mathPlugin],
+  })
   const workflowJson = {
     nodes: [
       {
         id: 'node2',
         nodeType: 'pass',
-        inputs: {
-          a: 1,
-          b: 2,
-        }
+        // inputs: {
+        //   a: 1,
+        //   b: 2,
+        // }
+        inputEdgeIds: ['edge1'],
+        outputEdgeIds: []
       },
       {
         id: 'node1',
         nodeType: 'math.add',
-        inputs: {
-          a: 3,
-          b: 4,
-        }
+        // inputs: {
+        //   a: 3,
+        //   b: 4,
+        // }
+        inputEdgeIds: [],
+        outputEdgeIds: ['edge1']
       },
     ],
     edges: [
-
+      {
+        id: 'edge1',
+        sourceNodeId: 'node1',
+        sourceKey: 'default',
+        targetNodeId: 'node2',
+        targetKey: 'default'
+      }
     ]
-  } satisfies WorkflowJson
+  } satisfies WorkflowJsonConstructor
 
   const result = await runner.execute(
     'math.add',

@@ -1,13 +1,13 @@
-import {WorkflowPlugin} from "../src/types/WorkflowPlugin";
+import {WorkflowPlugin, workflowPluginWithDefaults} from "../src/types/WorkflowPlugin";
 
-export const testData_emptyPlugin = {
+export const testData_emptyPlugin = workflowPluginWithDefaults({
   name: 'Empty Plugin',
   version: '0.0.0',
   nodeTypes: [],
   functions: [],
-} satisfies WorkflowPlugin
+}) satisfies WorkflowPlugin
 
-export const testData_mathPlugin = {
+export const testData_mathPlugin = workflowPluginWithDefaults({
   name: 'Math Plugin',
   version: '0.0.0',
   nodeTypes: [{
@@ -35,4 +35,4 @@ export const testData_mathPlugin = {
       }
     }
   }],
-} satisfies WorkflowPlugin
+}) satisfies WorkflowPlugin

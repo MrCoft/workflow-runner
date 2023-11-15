@@ -2,11 +2,11 @@
 export interface WorkflowJson {
   nodes: {
     id: string // GUID
-    name?: string
+    name: string
     nodeType: string
-    attributes?: JSON
-    positionX?: number
-    positionY?: number
+    attributesJson: string
+    positionX: number
+    positionY: number
     inputEdgeIds: string[]
     outputEdgeIds: string[]
   }[]

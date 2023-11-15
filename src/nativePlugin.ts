@@ -1,8 +1,8 @@
-import {WorkflowPlugin} from "./types/WorkflowPlugin";
+import {WorkflowPlugin, workflowPluginWithDefaults} from "./types/WorkflowPlugin";
 
-export const nativePlugin = {
+export const nativePlugin = workflowPluginWithDefaults({
   name: 'native',
   version: '0.0.0',
   nodeTypes: [],
   functions: [],
-} satisfies WorkflowPlugin;
+}) satisfies WorkflowPlugin;

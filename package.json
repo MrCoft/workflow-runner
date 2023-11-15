@@ -1,6 +1,6 @@
 {
   "name": "@coft/workflow-runner",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "JavaScript runner for Workflow Editor projects",
   "author": "Ondřej Műller",
   "license": "MIT",
